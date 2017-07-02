@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">报名人员列表</div>
+
+  <table class="table">
+    <thead>
+      <th>员工姓名</th>
+      <th>员工编号</th>
+      <th>班车路线</th>
+    </thead>
+    <tbody>
+      <% @members.each do |member|  %>
+        <tr>
+          <td><%= member.name %></td>
+          <td><%= member.employee_code %></td>
+          <td><%= member.bus_line %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
