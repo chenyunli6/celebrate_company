@@ -1,0 +1,170 @@
+<div class="member-container">
+  <%= render 'shared/banner' %>
+  <div class="container">
+    <%= form_for @member, html: {class: 'member-form center'} do |f| %>
+      <div class="form-header container-fluid">
+        <div class="row">
+          <h1 class="form-title col-md-12 font-family-inherit">
+            李宁26周年嘉年华报名平台
+          </h1>
+          <div class="form-description col-md-12">
+            <p>如因天气等原因影响活动正常进行，将提前通知调整时间！</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-content container-fluid">
+        <div class="row">
+            <div class="fields clearfix">
+              <div class="field field-drop-down col-sm-12 required">
+                <div class="form-group">
+                  <%= f.label :department, '系统', class: 'field-label' %>
+                  <%= f.select :department, options_for_select(['请选择']|Member::DEPARTMENTS, ""), {}, {class: 'form-control'}  %>
+                </div>
+              </div>
+              <div class="field field-text-field col-sm-12 required">
+                <div class="form-group">
+                  <%= f.label :employee_code, '员工编号', class: 'field-label' %>
+                  <span class="field-description">请正确输入您的员工编号</span>
+                  <%= f.text_field :employee_code, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="field field-text-field col-sm-12 required">
+                <div class="form-group">
+                  <%= f.label :name, '员工姓名', class: 'field-label' %>
+                  <%= f.text_field :name, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="field field-radio-button col-sm-12 required">
+                <div class="form-group">
+                  <%= f.label :name, '服装尺码', class: 'field-label' %>
+                  <div class="choices">
+                    <% Member::SIZES.each do |size| %>
+                      <label class="radio ">
+                        <div class="radio-button-wrapper">
+                          <%= f.radio_button :sizes, size, {multiple: true} %>
+                          <i class="selected-icon"></i>
+                        </div>
+                        <div class="choice-description">
+                          <%= size %>
+                        </div>
+                      </label>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field field-radio-button col-sm-12 required logic-trigger">
+                <div class="form-group">
+                  <%= f.label :name, '携带家属数量', class: 'field-label' %>
+                  <span class="field-description">每名员工可携带两名直系亲属参加活动（如家庭中有两名儿童可联系系统助理线下申请一名弹性名额）</span>
+                  <div class="choices">
+                    <% Member::FAMILY_AMOUNTS.each do |family_amount| %>
+                      <label class="radio ">
+                        <div class="radio-button-wrapper">
+                          <%= f.radio_button :family_amount, family_amount %>
+                          <i class="selected-icon"></i>
+                        </div>
+                        <div class="choice-description">
+                          <%= family_amount %>
+                        </div>
+                      </label>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field field-radio-button col-sm-12 hide" id="family_sizes1">
+                <div class="form-group">
+                  <%= f.label :name, '服装尺码', class: 'field-label' %>
+                  <div class="choices">
+                    <% Member::SIZES.each do |size| %>
+                      <label class="radio ">
+                        <div class="radio-button-wrapper">
+                          <%= f.radio_button :family_sizes1, size, {multiple: true} %>
+                          <i class="selected-icon"></i>
+                        </div>
+                        <div class="choice-description">
+                          <%= size %>
+                        </div>
+                      </label>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field field-radio-button col-sm-12 hide" id="family_sizes2">
+                <div class="form-group">
+                  <%= f.label :name, '服装尺码', class: 'field-label' %>
+                  <% Member::SIZES.each do |size| %>
+                    <label class="radio ">
+                      <div class="radio-button-wrapper">
+                        <%= f.radio_button :family_sizes2, size, {multiple: true} %>
+                        <i class="selected-icon"></i>
+                      </div>
+                      <div class="choice-description">
+                        <%= size %>
+                      </div>
+                    </label>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="field field-radio-button col-sm-12 required">
+                  <div class="form-group">
+                    <%= f.label :name, '是否参加过司庆', class: 'field-label' %>
+                    <div class="choices">
+                      <% Member::ANNIVERSARIES.each do |anniversarie| %>
+                        <label class="checkbox">
+                          <div class="check-box-wrapper">
+                            <%= f.check_box :anniversaries, {multiple: true}, anniversarie, nil %>
+                            <i class="selected-icon"></i>
+                          </div>
+                          <div class="choice-description">
+                            <%= anniversarie %>
+                          </div>
+                        </label>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field field-radio-button col-sm-12 required">
+                  <div class="form-group">
+                    <%= f.label :name, '是否乘坐班车', class: 'field-label' %>
+                    <div class="choices">
+                      <label class="radio ">
+                        <div class="radio-button-wrapper">
+                          <%= f.radio_button :shuttle_bus, true %>
+                          <i class="selected-icon"></i>
+                        </div>
+                        <div class="choice-description">
+                          是
+                        </div>
+                      </label>
+                      <label class="radio ">
+                        <div class="radio-button-wrapper">
+                          <%= f.radio_button :shuttle_bus, false %>
+                          <i class="selected-icon"></i>
+                        </div>
+                        <div class="choice-description">
+                          否
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="field field-drop-down col-sm-12 hide required">
+                  <div class="form-group">
+                    <%= f.label :bus_line, '乘坐班车路线', class: 'field-label' %>
+                    <%= f.select :bus_line, options_for_select(['请选择']|Member::BUS_LINE, ""), {}, {class: 'form-control'}  %>
+                  </div>
+                </div>
+            </div>
+            <div class="field submit-field col-md-12 clearfix pull-right">
+              <input type="button" name="commit" value="提交" data-disable-with="提交中..." data-enable-with="提交" class="submit btn btn-primary-solid">
+            </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,203 @@
+@mixin btn($bg-color, $border-color, $font-color, $hover-bg-color, $hover-border-color, $hover-font-color) {
+  &, &:focus {
+    background: $bg-color;
+    border: 1px solid $border-color;
+    color: $font-color;
+  }
+  &:hover, &.hover, &:active, &:active:hover {
+    background: $hover-bg-color;
+    border-color: $hover-border-color;
+    color: $hover-font-color;
+    i.gd-icon-wechat {
+      color: $hover-font-color;
+    }
+  }
+}
+
+.btn {
+  font-size: $font-size-base;
+  @include centered-content(auto, auto, 0 $btn-height-normal);
+  line-height: $btn-height-normal;
+  border-radius: $form-control-border-radius;
+  cursor: pointer;
+  &:active {
+    @include box-shadow(inset 0 1px 2px rgba(0,0,0,0.3));
+  }
+  &:hover, &.hover, &:active, &:focus {
+    text-decoration: none;
+  }
+  &.disabled, &:disabled, &[disabled] {
+    &, &:hover, &.hover {
+      background: $btn-disabled-bg-color!important;
+      color: $btn-disabled-font-color!important;
+      border: 1px solid $btn-disabled-border-color!important;
+      cursor: not-allowed!important;
+      box-shadow: none!important;
+    }
+  }
+}
+
+.btn + .btn {
+  margin-left: 10px;
+}
+.btn-info + .btn-info {
+  margin-left: 5px;
+}
+
+.btn-primary {
+  @include btn($btn-primary-bg-color, $btn-primary-border-color, $btn-primary-font-color, $btn-primary-hover-bg-color, $btn-primary-hover-border-color, $btn-primary-hover-font-color);
+}
+
+.btn-info {
+  @include btn($btn-info-bg-color, $btn-info-border-color, $btn-info-font-color, $btn-info-hover-bg-color, $btn-info-hover-border-color, $btn-info-hover-font-color);
+}
+
+.btn-danger {
+  @include btn($btn-danger-bg-color, $btn-danger-border-color, $btn-danger-font-color, $btn-danger-hover-bg-color, $btn-danger-hover-border-color, $btn-danger-hover-font-color);
+}
+
+.btn-primary-solid {
+  @include btn($btn-primary-font-color, $btn-primary-border-color, $btn-primary-bg-color, darken($btn-primary-font-color, 5%), darken($btn-primary-border-color, 5%), $btn-primary-bg-color);
+}
+
+.btn-ghost {
+  @include btn(transparent, $slate-grey, $slate-grey, transparent, white, white);
+}
+
+.btn-thin {
+  &, &:hover, &.hover, &:focus {
+    line-height: $btn-height-thin;
+  }
+}
+
+.btn-thick {
+  &, &:hover, &.hover, &:focus {
+    line-height: $btn-height-thick;
+  }
+}
+
+.btn-narrow {
+  &, &:hover, &.hover, &:focus {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.btn-small {
+  @extend .btn-narrow;
+  @extend .btn-thin;
+}
+
+.btn-wide {
+  &, &:hover, &.hover, &:focus {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+.btn-icon {
+  padding: 0;
+  width: $btn-height-normal + 2px;
+  font-size: 22px;
+  i{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .gd-icon-list {
+    font-size: 18px;
+    line-height: 18px;
+    margin-top: -3px;
+  }
+  .gd-icon-qrcode {
+    font-size: 21px;
+    line-height: 21px;
+    margin-top: -3px;
+  }
+  .gd-icon-bars {
+    font-size: 18px;
+    line-height: 18px;
+    margin-top: -2px;
+  }
+  &.btn-thin {
+    width: $btn-height-thin + 2px;
+    font-size: 20px;
+    .gd-icon-list {
+      font-size: 15px;
+      line-height: 15px;
+    }
+    .gd-icon-font-weight {
+      vertical-align: top;
+    }
+  }
+}
+
+.btn-icon-sm {
+  font-size: 14px;
+  @include square(20px);
+  line-height: 18px;
+  i {
+    display: block;
+  }
+}
+
+.btn-icon-lg {
+  font-size: 24px;
+  @include square(43px);
+  line-height: 41px;
+}
+
+.btn-link {
+  padding: 0;
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-group {
+  display: block;
+  margin: auto;
+  width: 70%;
+  padding: 10px;
+  .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+}
+
+.btn-group-inline {
+  @extend .clearfix;
+  .btn {
+    @include btn($btn-primary-bg-color, $btn-info-border-color, $btn-info-font-color, $btn-primary-bg-color, $btn-info-border-color, $btn-primary-border-color);
+    border-radius: 0;
+    margin: 0;
+    float:left;
+    & + .gd-btn {
+      margin-left: -1px;
+    }
+    &.selected {
+      @include btn($btn-primary-border-color, $btn-primary-border-color, $btn-primary-hover-font-color, $btn-primary-border-color, $btn-primary-border-color, $btn-primary-hover-font-color);
+    }
+    &.selected {
+      & + .btn {
+        border-left-color: $btn-primary-border-color;
+      }
+    }
+    &:first-child {
+      @include border-left-radius(2px);
+    }
+    &:last-child {
+      @include border-right-radius(2px);
+    }
+  }
+  &.btn-group-thin {
+    .btn {
+      @extend .btn-thin;
+    }
+  }
+}

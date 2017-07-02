@@ -1,0 +1,9 @@
+#= require turbolinks
+#= require jquery
+#= require jquery/jquery-ujs
+#= require bootstrap-sprockets
+#= require bootstrap/alert
+#= require bootstrap/dropdown
+#= require bootstrapValidator.min
+#= require global
+#= require members
